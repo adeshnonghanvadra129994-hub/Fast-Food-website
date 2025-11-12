@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VeggieBite - Fresh Vegetarian Delights</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js for admin analytics -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Client Application -->
+  <div id="clientApp" class="client-app">
+    <!-- Navigation Header -->
+    <header class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <div class="brand-logo">🌱</div>
+          <h1 class="brand-name">VeggieBite</h1>
+        </div>
+        
+        <nav class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link active" data-page="home">Home</a>
+          <a href="#menu" class="nav-link" data-page="client-menu">Menu</a>
+          <a href="#cart" class="nav-link" data-page="cart">Cart</a>
+          <a href="#reservations" class="nav-link" data-page="client-reservations">Reservations</a>
+          <a href="#about" class="nav-link" data-page="client-about">About</a>
+          <a href="#contact" class="nav-link" data-page="client-contact">Contact</a>
+          <a href="#profile" class="nav-link" data-page="client-profile">Profile</a>
+        </nav>
+        
+        <div class="nav-actions">
+          <button class="cart-btn" id="cartBtn" data-page="cart">
+            <span>🛒</span>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+          <button class="admin-link-btn" id="adminLinkBtn">Admin</button>
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="clientMainContent">
+      <!-- Content will be dynamically loaded here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-brand">
+            <div class="brand-logo">🌱</div>
+            <h3>VeggieBite</h3>
+            <p>Fresh Vegetarian Delights</p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <p>📍 123 Green Street, VCity, India</p>
+          <p>📞 +91 98765 43210</p>
+          <p>✉️ hello@veggiebite.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Hours</h4>
+          <p>Monday - Friday: 11AM - 10PM</p>
+          <p>Saturday - Sunday: 9AM - 11PM</p>
+        </div>
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Twitter</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 VeggieBite. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Admin Application -->
+  <div id="adminApp" class="admin-app hidden">
+    <!-- Admin Login Page -->
+    <div class="login-page" id="loginPage">
+      <div class="login-container">
+        <div class="login-header">
+          <div class="login-logo">🌱</div>
+          <h1 class="login-title">VeggieBite</h1>
+          <p class="login-subtitle">Admin Portal</p>
+        </div>
+        
+        <div class="login-form-container">
+          <h2 class="login-form-title">Admin Login</h2>
+          <form class="login-form" id="loginForm">
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="admin@veggiebite.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full-width login-btn" id="loginBtn">
+              <span class="login-btn-text">Sign In</span>
+              <span class="login-spinner hidden">Signing in...</span>
+            </button>
+          </form>
+          <div class="login-footer">
+            <button class="login-link" id="backToClientBtn">← Back to VeggieBite</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel hidden" id="adminPanel">
+      <!-- Top Header -->
+      <header class="top-header">
+        <div class="header-content">
+          <div class="header-left">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+            <div class="brand-container">
+              <div class="brand-logo">🌱</div>
+              <h1 class="brand">VeggieBite Admin</h1>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="notifications">
+              <span class="notification-icon">🔔</span>
+              <span class="notification-badge">3</span>
+            </div>
+            <div class="user-profile">
+              <div class="user-avatar">AM</div>
+              <span class="user-name">Admin Manager</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Layout -->
+      <div class="admin-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+          <nav class="sidebar-nav">
+            <ul class="nav-list">
+              <li>
+                <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                  <span class="nav-icon">📊</span>
+                  <span class="nav-text">Dashboard</span>
+                </a>
+              </li>
+              <li>
+                <a href="#orders" class="nav-link" data-page="orders">
+                  <span class="nav-icon">📝</span>
+                  <span class="nav-text">Orders</span>
+                </a>
+              </li>
+              <li>
+                <a href="#menu" class="nav-link" data-page="menu">
+                  <span class="nav-icon">🍽️</span>
+                  <span class="nav-text">Menu</span>
+                </a>
+              </li>
+              <li>
+                <a href="#reservations" class="nav-link" data-page="reservations">
+                  <span class="nav-icon">📅</span>
+                  <span class="nav-text">Reservations</span>
+                </a>
+              </li>
+              <li>
+                <a href="#customers" class="nav-link" data-page="customers">
+                  <span class="nav-icon">👥</span>
+                  <span class="nav-text">Customers</span>
+                </a>
+              </li>
+              <li>
+                <a href="#analytics" class="nav-link" data-page="analytics">
+                  <span class="nav-icon">📈</span>
+                  <span class="nav-text">Analytics</span>
+                </a>
+              </li>
+              <li class="nav-divider"></li>
+              <li>
+                <a href="#admin-about" class="nav-link" data-page="admin-about">
+                  <span class="nav-icon">ℹ️</span>
+                  <span class="nav-text">About</span>
+                </a>
+              </li>
+              <li>
+                <a href="#admin-contact" class="nav-link" data-page="admin-contact">
+                  <span class="nav-icon">📧</span>
+                  <span class="nav-text">Contact</span>
+                </a>
+              </li>
+              <li class="nav-divider"></li>
+              <li>
+                <a href="#logout" class="nav-link nav-link--logout" id="logoutBtn">
+                  <span class="nav-icon">🚪</span>
+                  <span class="nav-text">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main-content" id="adminMainContent">
+          <!-- Admin content will be dynamically inserted here -->
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- Generic Modal -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Modal Title</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Modal content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
